@@ -145,7 +145,23 @@ Window {
           border.color: "transparent";
           radius: 20 
         }
+
+        Keys.onReturnPressed: {
+          sddm.login(
+            username.text,
+            password.text,
+            sessionModel.lastIndex
+          )
+        }
       }
+    }
+  }
+  Connections {
+    target: sddm
+
+    function onLoginFailed() {
+      password.text = ""
+      password.forceActiveFocus()
     }
   }
 }
