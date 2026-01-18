@@ -8,6 +8,12 @@ Window {
   height: 450
   title: "Login screen"
 
+  Component.onCompleted: {
+    Qt.callLater(function () {
+      password.forceActiveFocus()
+    })
+  }
+
   Image {
     id: backgroundImage
     anchors.fill: parent
@@ -34,7 +40,7 @@ Window {
     anchors.fill: blurMask
     source: blurMask
     blurEnabled: true
-    blur: 0.8
+    blur: 0.9
     blurMax: 32
   }
   
@@ -79,7 +85,17 @@ Window {
           background: Rectangle { color: selectUser.highlightedIndex === index ? "#55555580" : "transparent" }
         }
 
-        background: Rectangle { color: "#33333380"; radius: 5 }
+        background: Rectangle { color: "#33333380"; radius: 15 }
+      }
+
+      Image {
+        anchors.left: parent.left
+        anchors.leftMargin: 14
+        anchors.verticalCenter: parent.verticalCenter
+        width: 20
+        height: 20
+        source: "./assets/account-login.svg"
+        opacity: 0.7
       }
 
       TextField {
@@ -91,7 +107,11 @@ Window {
         placeholderText: "Username"
         font.bold: true
         color: "white"
-        background: Rectangle { color: "#00000000"; border.color: "transparent"; radius: 5 }
+        background: Rectangle {
+          color: "#00000000"; 
+          border.color: "transparent";
+          radius: 65 
+        }
         selectByMouse: true
       }
     }
@@ -101,35 +121,31 @@ Window {
       width: parent.width
       height: 50
 
-      Button {
-        id: passwordIcon
+      Image {
         anchors.left: parent.left
+        anchors.leftMargin: 14
         anchors.verticalCenter: parent.verticalCenter
-        width: 40
-        height: 40
-        icon.source: "Assets/Password2.svg"
-        onClicked: password.echoMode = password.echoMode === TextInput.Password ? TextInput.Normal : TextInput.Password
-        background: Rectangle { color: "transparent" }
+        width: 20
+        height: 20
+        source: "./assets/passwordKey.svg"
+        opacity: 0.7
       }
 
       TextField {
         id: password
-        anchors.left: passwordIcon.right
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
         height: parent.height
+        anchors.fill: parent
         horizontalAlignment: TextInput.AlignHCenter
+        verticalAlignment: TextInput.AlignVCenter
         placeholderText: "Password"
         echoMode: TextInput.Password
         color: "white"
-        background: Rectangle { color: "#00000000"; border.color: "transparent"; radius: 5 }
+        background: Rectangle { 
+          color: "#33333380";
+          border.color: "transparent";
+          radius: 20 
+        }
       }
-    }
-
-    Button {
-      id: loginButton
-      width: parent.width
-      text: "Login"
     }
   }
 }
