@@ -4,10 +4,9 @@ import QtQuick.Controls 2.15
 import QtQuick.Effects
 import QtMultimedia 6.5
 
-Window {
+Pane {
   width: 800
   height: 450
-  title: "Login screen"
 
   Component.onCompleted: {
     Qt.callLater(function () {
@@ -54,7 +53,7 @@ Window {
     anchors.left: parent.left
     anchors.top: parent.top
 
-    sourceItem: backgroundImage
+    sourceItem: backgroundContainer
     sourceRect: Qt.rect(0, 0, width, height)
 
     wrapMode: ShaderEffectSource.ClampToEdge
@@ -137,6 +136,7 @@ Window {
         model: userModel
         currentIndex: userModel.lastIndex
         textRole: "name"
+        contentItem: Item {}
         onActivated: { 
           username.text = currentText
           password.forceActiveFocus()
@@ -216,11 +216,9 @@ Window {
         }
 
         Keys.onReturnPressed: {
-          sddm.login(
-            username.text,
-            password.text,
-            sessionModel.lastIndex
-          )
+          let sessionIndex = sessionModel.lastIndex
+          if (sessionIndex < 0) sessionIndex = 0
+          sddm.login(username.text, password.text, sessionIndex)
         }
       }
     }
