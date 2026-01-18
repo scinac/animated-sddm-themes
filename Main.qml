@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Effects
+import QtMultimedia 6.5
 
 Window {
   width: 800
@@ -14,12 +15,36 @@ Window {
     })
   }
 
-  Image {
-    id: backgroundImage
+  Item {
+    id: backgroundContainer
     anchors.fill: parent
-    source: "./backgrounds/senjougahara1920x1200.png"
-    fillMode: Image.PreserveAspectCrop
-    smooth: true
+
+    MediaPlayer {
+      id: bgplayer
+      autoPlay: true
+      videoOutput: videoOutput
+      loops: MediaPlayer.Infinite
+      onPlayingChanged: backgroundPlaceholderImage.visible = false
+      source: Qt.resolvedUrl("./backgrounds/senjougahara1920x1080.mp4")
+    }
+
+    VideoOutput {
+      id: videoOutput
+      anchors.fill: parent
+      fillMode: VideoOutput.PreserveAspectCrop
+    }
+
+    Image {
+      id: backgroundPlaceholderImage
+      anchors.fill: parent
+      visible: true
+      source: "./backgrounds/senjougahara1920x1080.png"
+    }
+
+    MouseArea {
+      anchors.fill: parent
+      onClicked: parent.forceActiveFocus()
+    }
   }
 
   ShaderEffectSource {
@@ -200,6 +225,7 @@ Window {
       }
     }
   }
+
   Connections {
     target: sddm
 
