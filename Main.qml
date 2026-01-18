@@ -47,14 +47,16 @@ Window {
   Column {
     id: clockContainer
     anchors.top: parent.top
+    anchors.left: parent.left
     anchors.horizontalCenter: parent.horizontalCenter
-    anchors.topMargin: 30
+    anchors.topMargin: 150
+    anchors.leftMargin: 220
     spacing: 4
 
     Text {
       id: clock
       text: Qt.formatTime(new Date(), "hh:mm AP")
-      font.pixelSize: 36
+      font.pixelSize: 86
       font.bold: true
       color: "white"
       horizontalAlignment: Text.AlignHCenter
@@ -63,7 +65,7 @@ Window {
     Text {
       id: date
       text: Qt.formatDate(new Date(), "dddd, MMMM d")
-      font.pixelSize: 16
+      font.pixelSize: 36
       color: "#cccccc"
       horizontalAlignment: Text.AlignHCenter
     }
