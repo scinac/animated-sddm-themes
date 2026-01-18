@@ -43,6 +43,48 @@ Window {
     blur: 0.9
     blurMax: 32
   }
+
+  Column {
+    id: clockContainer
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.topMargin: 30
+    spacing: 4
+
+    Text {
+      id: clock
+      text: Qt.formatTime(new Date(), "hh:mm AP")
+      font.pixelSize: 36
+      font.bold: true
+      color: "white"
+      horizontalAlignment: Text.AlignHCenter
+    }
+
+    Text {
+      id: date
+      text: Qt.formatDate(new Date(), "dddd, MMMM d")
+      font.pixelSize: 16
+      color: "#cccccc"
+      horizontalAlignment: Text.AlignHCenter
+    }
+
+    Rectangle {
+      anchors.fill: clockContainer
+      color: "#00000040"
+      radius: 12
+      z: -1
+    }
+
+    Timer {
+      interval: 1000
+      running: true
+      repeat: true
+      onTriggered: {
+        clock.text = Qt.formatTime(new Date(), "hh:mm AP")
+        date.text = Qt.formatDate(new Date(), "dddd, MMMM d")
+      }
+    }
+  }
   
   Column {
     id: form
