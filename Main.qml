@@ -60,9 +60,12 @@ Window {
         width: parent.width
         height: parent.height
         model: userModel
-        currentIndex: model.lastIndex
+        currentIndex: userModel.lastIndex
         textRole: "name"
-        onActivated: { username.text = currentText }
+        onActivated: { 
+          username.text = currentText
+          password.forceActiveFocus()
+        }
 
         delegate: ItemDelegate {
           width: parent.width
@@ -84,7 +87,7 @@ Window {
         anchors.fill: parent
         horizontalAlignment: TextInput.AlignHCenter
         verticalAlignment: TextInput.AlignVCenter
-        text: Platform.userName
+        text: selectUser.currentText
         placeholderText: "Username"
         font.bold: true
         color: "white"
