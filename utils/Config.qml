@@ -22,7 +22,7 @@ QtObject {
 
   function loadConf(path) {
     var xhr = new XMLHttpRequest()
-    xhr.open("GET", path)
+    xhr.open("GET", path, false)
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {

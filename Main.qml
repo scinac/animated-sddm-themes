@@ -4,11 +4,22 @@ import QtQuick.Controls 2.15
 import QtQuick.Effects
 import QtMultimedia 6.5
 
+import "utils"
+
 Pane {
   width: 800
   height: 450
 
+  Config {
+    id: config
+  }
+
   Component.onCompleted: {
+    config.loadConf("/usr/share/sddm/themes/animated-sddm-themes/themeConfigs/senjougahara.conf")
+    if (config.backgroundVideo !== "") {
+        bgplayer.source = Qt.resolvedUrl(config.backgroundVideo)
+        bgplayer.play()
+      }
     Qt.callLater(function () {
       password.forceActiveFocus()
     })
@@ -24,7 +35,8 @@ Pane {
       videoOutput: videoOutput
       loops: MediaPlayer.Infinite
       onPlayingChanged: backgroundPlaceholderImage.visible = false
-      source: Qt.resolvedUrl("./backgrounds/senjougahara1920x1080.mp4")
+      //source: Qt.resolvedUrl("./backgrounds/senjougahara1920x1080.mp4")
+      source: Qt.resolvedUrl(config.backgroundVideo)
     }
 
     VideoOutput {
@@ -37,7 +49,8 @@ Pane {
       id: backgroundPlaceholderImage
       anchors.fill: parent
       visible: true
-      source: "./backgrounds/senjougahara1920x1080.png"
+      //source: "./backgrounds/senjougahara1920x1080.png"
+      source: config.backgroundImage
     }
 
     MouseArea {
@@ -64,8 +77,10 @@ Pane {
     anchors.fill: blurMask
     source: blurMask
     blurEnabled: true
-    blur: 0.9
-    blurMax: 32
+    //blur: 0.9
+    blur: config.blur
+    //blurMax: 32
+    blurMax: config.blurMax
   }
 
   Column {
