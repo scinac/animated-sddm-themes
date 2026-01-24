@@ -15,7 +15,7 @@ Pane {
   }
 
   Component.onCompleted: {
-    config.loadConf("/usr/share/sddm/themes/animated-sddm-themes/themeConfigs/senjougahara.conf")
+    config.loadConf("/usr/share/sddm/themes/animated-sddm-themes/themeConfigs/makima.conf")
     if (config.backgroundVideo !== "") {
         bgplayer.source = Qt.resolvedUrl(config.backgroundVideo)
         bgplayer.play()
@@ -176,7 +176,7 @@ Pane {
 
         background: Rectangle { 
           color: "#33333380";
-          radius: 15
+          radius: 65
         }
       }
 
@@ -235,8 +235,8 @@ Pane {
         //color: "white"
         color: config.formText
         background: Rectangle { 
-          //color: config.formFieldBackground;
-          color: "#33333380";
+          color: config.formFieldBackground;
+          //color: "#33333380";
           border.color: "transparent";
           radius: 20 
         }
