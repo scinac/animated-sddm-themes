@@ -15,7 +15,7 @@ Pane {
   }
 
   Component.onCompleted: {
-    config.loadConf("/usr/share/sddm/themes/animated-sddm-themes/themeConfigs/makima.conf")
+    config.loadConf("/usr/share/sddm/themes/animated-sddm-themes/themeConfigs/frieren.conf")
     if (config.backgroundVideo !== "") {
         bgplayer.source = Qt.resolvedUrl(config.backgroundVideo)
         bgplayer.play()
