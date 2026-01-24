@@ -12,6 +12,8 @@ QtObject {
   property string clockText: "white"
   property string dateText: "#cccccc"
   property string formBackground: "#00000030"
+  property string formFieldBackground: "#0000ff40"
+  property string formText: "white"
   property string dimBackground: "#00000040"
 
   property string formPosition: "center"
@@ -44,7 +46,9 @@ QtObject {
 
               case "clockText": clockText = value; break
               case "dateText": dateText = value; break
+              case "formText": formText = value; break
               case "formBackground": formBackground = value; break
+              case "formFieldBackground": formFieldBackground = value; break
               case "dimBackground": dimBackground = value; break
 
               case "formPosition": formPosition = value; break
