@@ -4,9 +4,10 @@ import QtQuick.Controls 2.15
 import QtQuick.Effects
 import QtMultimedia 6.5
 
-Pane {
-  width: 800
-  height: 450
+Item {
+  //width: 800
+  //height: 450
+  anchors.fill: parent
 
   Component.onCompleted: {
     if (config.video !== undefined && config.video !== "")
@@ -146,6 +147,7 @@ Pane {
         width: parent.width
         height: parent.height
         model: userModel
+        editable: true
         currentIndex: userModel.lastIndex
         textRole: "name"
         contentItem: Item {}
@@ -238,6 +240,40 @@ Pane {
           let sessionIndex = sessionModel.lastIndex
           if (sessionIndex < 0) sessionIndex = 0
           sddm.login(username.text, password.text, sessionIndex)
+        }
+      }
+    }
+
+    ComboBox {
+      id: sessionSelect
+      width: parent.width
+      height: 40
+      model: sessionModel
+      textRole: "name"
+      currentIndex: sessionModel.lastIndex
+
+      contentItem: Text {
+        text: sessionSelect.currentText
+        color: config.formText
+        font.pixelSize: 14
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+      }
+
+      background: Rectangle {
+        color: config.formFieldBackground
+        radius: 10
+        opacity: 0.8
+      }
+
+      delegate: ItemDelegate {
+        width: sessionSelect.width
+        contentItem: Text {
+          text: model.name
+          color: config.formText
+        }
+        background: Rectangle { 
+          color: sessionSelect.highlightedIndex === index ? "#55555580" : "transparent" 
         }
       }
     }
