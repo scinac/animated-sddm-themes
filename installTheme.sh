@@ -29,6 +29,9 @@ EOF
 cat >"$SDDM_CONF_DEF_FILE" <<EOF
 [Theme]
 Current=$THEME_NAME
+
+[General]
+InputMethod=
 EOF
 
 echo "theme set (prolly)"
