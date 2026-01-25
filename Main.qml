@@ -4,25 +4,18 @@ import QtQuick.Controls 2.15
 import QtQuick.Effects
 import QtMultimedia 6.5
 
-import "utils"
-
 Pane {
   width: 800
   height: 450
 
-  Config {
-    id: config
-  }
-
   Component.onCompleted: {
-    config.loadConf("/usr/share/sddm/themes/animated-sddm-themes/themeConfigs/current.conf")
-    if (config.backgroundVideo !== "") {
-        bgplayer.source = Qt.resolvedUrl(config.backgroundVideo)
-        bgplayer.play()
-      }
-    Qt.callLater(function () {
-      password.forceActiveFocus()
-    })
+    if (config.backgroundVideo !== undefined && config.backgroundVideo !== "")
+      bgplayer.source = Qt.resolvedUrl(config.backgroundVideo)
+
+    if (config.backgroundImage !== undefined)
+      backgroundPlaceholderImage.source = Qt.resolvedUrl(config.backgroundImage)
+
+    Qt.callLater(() => password.forceActiveFocus())
   }
 
   Item {
@@ -36,7 +29,7 @@ Pane {
       loops: MediaPlayer.Infinite
       onPlayingChanged: backgroundPlaceholderImage.visible = false
       //source: Qt.resolvedUrl("./backgrounds/senjougahara1920x1080.mp4")
-      source: Qt.resolvedUrl(config.backgroundVideo)
+      //source: Qt.resolvedUrl(config.backgroundVideo)
     }
 
     VideoOutput {

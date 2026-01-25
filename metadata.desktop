@@ -1,2 +1,3 @@
 [SddmGreeterTheme]
 QtVersion=6
+ConfigFile=themeConfigs/current.conf
