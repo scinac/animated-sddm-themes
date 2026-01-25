@@ -9,11 +9,11 @@ Pane {
   height: 450
 
   Component.onCompleted: {
-    if (config.backgroundVideo !== undefined && config.backgroundVideo !== "")
-      bgplayer.source = Qt.resolvedUrl(config.backgroundVideo)
+    if (config.video !== undefined && config.video !== "")
+      bgplayer.source = Qt.resolvedUrl(config.video)
 
-    if (config.backgroundImage !== undefined)
-      backgroundPlaceholderImage.source = Qt.resolvedUrl(config.backgroundImage)
+    if (config.image !== undefined)
+      backgroundPlaceholderImage.source = Qt.resolvedUrl(config.image)
 
     Qt.callLater(() => password.forceActiveFocus())
   }
@@ -43,7 +43,7 @@ Pane {
       anchors.fill: parent
       visible: true
       //source: "./backgrounds/senjougahara1920x1080.png"
-      source: config.backgroundImage
+      source: config.image
     }
 
     MouseArea {
