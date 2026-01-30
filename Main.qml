@@ -237,9 +237,7 @@ Item {
         }
 
         Keys.onReturnPressed: {
-          let sessionIndex = sessionModel.lastIndex
-          if (sessionIndex < 0) sessionIndex = 0
-          sddm.login(username.text, password.text, sessionIndex)
+          sddm.login(username.text, password.text, sessionSelect.currentIndex)
         }
       }
     }
